@@ -8,6 +8,8 @@ class WriteFile:
             with open(file_name, "w", encoding="utf-8",errors = "ignore") as fw:
                 json.dump(dict_one,fw,indent=4,ensure_ascii=False)
                 fw.write('\n')
+                fw.flush()
+                os.fsync(fw)
 
     def write_list_to_json_file(self,file_name,dict_list):
         if file_name == "":
@@ -35,9 +37,8 @@ class WriteFile:
                     for k,v in dict_one.items():
                         fw.write(str(k) + ": " + str(v) + "")
                     fw.write('\n')
-
-
-
+                fw.flush()
+                os.fsync(fw)
 
 
 if __name__ == "__main__":
